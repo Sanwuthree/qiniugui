@@ -7,4 +7,6 @@ app.on('ready',(info)=>{
         width:860,
         height:620
     })
+    main_win.loadURL(`file:///${__dirname}/views/index.html`);
+    main_win.webContents.openDevTools()
 })
