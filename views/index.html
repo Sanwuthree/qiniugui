@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>QIN</title>
 </head>
+
 <body>
     <div id="holder">
         Drag your file herer
     </div>
     <script>
-        document.addEventListener("drop",function(e){
+        const { ipcRenderer } = require('electron')
+        document.addEventListener("drop", function (e) {
             e.preventDefault();
             e.stopPropagation();
-            for(var f of e.dataTransfer.files){
-                console.log(`File(s) you dragged here:`,f.path,'   ',f.type)
+            //ipcRenderer.sendSync("drop-files", e.dataTransfer.files);
+            for (var f of e.dataTransfer.files) {
+                console.log(`File(s) you dragged here:`, f.path, '   ', f.type)
             }
         })
-        document.addEventListener('dragover',function(e){
+        document.addEventListener('dragover', function (e) {
             e.preventDefault();
             e.stopPropagation();
         })
     </script>
 </body>
+
 </html>
