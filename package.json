@@ -1,5 +1,28 @@
 {
   "devDependencies": {
-    "electron": "^1.7.6"
-  }
+    "electron": "^1.7.6",
+    "electron-builder": "^19.27.7"
+  },
+  "name": "qiniugui",
+  "description": "",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "list-dir": "^1.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dist": "electron-builder",
+    "pack": "electron-builder --dir"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sanwuthree/qiniugui.git"
+  },
+  "author": "sanwuthree",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sanwuthree/qiniugui/issues"
+  },
+  "homepage": "https://github.com/Sanwuthree/qiniugui#readme"
 }
