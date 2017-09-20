@@ -5,7 +5,10 @@
                 "type": "node",
                 "request": "launch",
                 "name": "Electron Main",
-                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd",
+                "runtimeExecutable": "/usr/local/bin/electron",
+                "windows": {
+                    "runtimeExecutable": "/usr/local/bin/electron"
+                },
                 "program": "${workspaceRoot}/app.js",
                 "protocol":"inspector"
             }

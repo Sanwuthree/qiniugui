@@ -4,7 +4,7 @@
     "electron-builder": "^19.27.7"
   },
   "name": "qiniugui",
-  "description": "",
+  "description": "一个用于七牛云的GUI APP",
   "version": "1.0.0",
   "main": "app.js",
   "dependencies": {

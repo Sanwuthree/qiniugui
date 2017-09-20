@@ -5,6 +5,7 @@ let login_win=new BrowserWindow({
     maximizable:false,
     minimizable:false,
     resizable:false,
-    autoHideMenuBar:true
+    autoHideMenuBar:true,
+    frame:false
 });
 login_win.loadURL(`file:///${__dirname}/login.html`);
