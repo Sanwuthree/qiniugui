@@ -22,7 +22,11 @@ class GConfig{
         fs.writeFile(this.config_path,JSON.stringify(this.config),(err)=>{console.log("config init")});
     }
     loadConfig(){
-        this.config=JSON.parse(fs.readFileSync(this.config_path,"utf-8"));
+        try {
+            this.config=JSON.parse(fs.readFileSync(this.config_path,"utf-8"));
+        } catch (error) {
+            this.config={}
+        }
         console.log(this.config)
     }
 }
