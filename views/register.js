@@ -7,6 +7,7 @@ let win = new BrowserWindow({
     frame:false
 })
 win.loadURL(`file://${__dirname}/register.html`);
+
 //win.webContents.openDevTools()
 
 module.exports=win;
