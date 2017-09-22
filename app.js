@@ -1,4 +1,4 @@
-const {app,electron} = require("electron")
+const {ipcMain,app,electron} = require("electron")
 const GConfig=require("./config")
 const fs=require("fs"),path=require("path"),process=require("process")
 app.on('ready',(info)=>{
@@ -10,3 +10,9 @@ app.on('ready',(info)=>{
     }
     
 });
+app.on("window-all-closed",()=>{
+    app.exit();
+})
+ipcMain.on("try-close-window",(evt,args)=>{
+    console.log(evt.sender)
+})

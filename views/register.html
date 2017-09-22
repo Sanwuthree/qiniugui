@@ -69,10 +69,18 @@
 	</div>
 	<script src="js/remove_electron_key.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script type="text/javascript">
+		let {ipcRenderer}=nodeRequire("electron");
 		$(".btn:first").on("click", function (evt) {
 			alert($("input:first").val());
+			if(ipcRenderer.sendSync("try-login")){
+
+			}else{
+				alert("失败")
+			}
 		})
 	</script>
 </body>
