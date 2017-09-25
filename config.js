@@ -8,13 +8,6 @@ class GConfig{
         this.config_path=path.join(this.cwd,"config.cfg");
         if(fs.existsSync(this.config_path)){
             this.loadConfig();
-        }else{
-            this.config={//初始化配置文件
-                ak:"",
-                sk:"",
-                bukets:[]
-            }
-            this.saveConfig();
         }
     }
     saveConfig(){
