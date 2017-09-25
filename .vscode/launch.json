@@ -7,7 +7,7 @@
                 "name": "Electron Main",
                 "runtimeExecutable": "/usr/local/bin/electron",
                 "windows": {
-                    "runtimeExecutable": "C:/Users/xtyga/AppData/Roaming/npm/node_modules/electron/dist/electron.exe"
+                    "runtimeExecutable": "C:/Users/three/AppData/Roaming/npm/node_modules/electron/dist/electron.exe"
                 },
                 "program": "${workspaceRoot}/app.js",
                 "protocol":"inspector"

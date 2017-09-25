@@ -11,7 +11,8 @@ class GConfig{
         }else{
             this.config={//初始化配置文件
                 ak:"",
-                sk:""
+                sk:"",
+                bukets:[]
             }
             this.saveConfig();
         }
@@ -19,7 +20,7 @@ class GConfig{
     saveConfig(){
         console.log(this.cwd)
         console.log(this.config_path);
-        fs.writeFile(this.config_path,JSON.stringify(this.config),(err)=>{console.log("config init")});
+        fs.writeFile(this.config_path,JSON.stringify(this.config),(err)=>{console.log("config saved")});
     }
     loadConfig(){
         try {
@@ -28,6 +29,9 @@ class GConfig{
             this.config={}
         }
         console.log(this.config)
+    }
+    deleteCofnig(){
+        fs.unlinkSync(this.config_path);
     }
 }
 

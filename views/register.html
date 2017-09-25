@@ -48,16 +48,14 @@
 		<div class="row justify-content-center">
 			<div class="col-10">
 				<div class="input-group">
-					<input type="text" class="form-control" placeholder="AccessKey" aria-label="Username" aria-describedby="basic-addon1">
+					<input type="text" id="ak" class="form-control" placeholder="AccessKey" aria-label="AK" aria-describedby="basic-addon1" value="V5qGbarayqTOvfJgsTkciztnr2zL_E02eRTBeyju"></div>
+				<div class="input-group">
+					<input type="text" id="sk" class="form-control" placeholder="secretKey" aria-label="SK" aria-describedby="basic-addon1" value="Xl9l7SUDJg8u6aKzwR734N8sOKU7-cXKEY4eKw-Q"></div>
+				<div class="input-group">
+					<input type="password" id="key1" class="form-control" placeholder="安全码" aria-label="Username" aria-describedby="basic-addon1" value="8791">
 				</div>
 				<div class="input-group">
-					<input type="text" class="form-control" placeholder="secretKey" aria-label="Username" aria-describedby="basic-addon1">
-				</div>
-				<div class="input-group">
-					<input type="password" class="form-control" placeholder="安全码" aria-label="Username" aria-describedby="basic-addon1">
-				</div>
-				<div class="input-group">
-					<input type="password" class="form-control" placeholder="确认安全码" aria-label="Username" aria-describedby="basic-addon1">
+					<input type="password" id="key2" class="form-control" placeholder="确认安全码" aria-label="Username" aria-describedby="basic-addon1" value="8791">
 				</div>
 			</div>
 		</div>
@@ -75,11 +73,28 @@
 	<script type="text/javascript">
 		let {ipcRenderer}=nodeRequire("electron");
 		$(".btn:first").on("click", function (evt) {
-			alert($("input:first").val());
-			if(ipcRenderer.sendSync("try-login")){
-
+			var ak= $("#ak").val();
+			var sk=$("#sk").val();
+			var key="";
+			if($("#key1").val()===$("#key2").val()){
+				key=$("#key1").val();
+				if(key.length==4){
+					key=$("#key1").val();
+				}else{
+					alert("长度不对")
+					return;
+				}
+				
 			}else{
-				alert("失败")
+				alert("再次输入的安全码不一样")
+				return;
+			}
+			//alert(ak+sk)
+			var loginResult=ipcRenderer.sendSync("try-regist",[ak,sk,key]);
+			if(loginResult[0]){
+				//alert(loginResult[1])
+			}else{
+				alert("连接失败:"+loginResult[1])
 			}
 		})
 	</script>
