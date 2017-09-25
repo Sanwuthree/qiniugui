@@ -53,7 +53,11 @@ ipcMain.on("try-regist",(evt,args)=>{
 
 })
 
-
+ipcMain.on("try-close-window",(evt,args)=>{
+    if(!win.isDestroyed()){
+        win.close();
+    }
+})
 
 
 module.exports=win;

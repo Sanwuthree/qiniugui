@@ -11,6 +11,7 @@ let login_win=new BrowserWindow({
     frame:false
 });
 login_win.loadURL(`file:///${__dirname}/login.html`);
+//login_win.webContents.openDevTools()
 ipcMain.on("try-login",(evt,args)=>{
     let password=args+args;
     let str= GConfig.config.sec;
@@ -31,3 +32,8 @@ ipcMain.on("try-reset",(evt,args)=>{
     login_win.close();
     
 })  
+ipcMain.on("try-close-window",(evt,args)=>{
+    if(!login_win.isDestroyed()){
+        login_win.close();
+    }
+})

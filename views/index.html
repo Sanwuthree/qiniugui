@@ -12,8 +12,9 @@
     <div id="holder">
         Drag your file herer
     </div>
+	<script src="js/remove_electron_key.js" type="text/javascript" charset="utf-8"></script>    
     <script>
-        const { ipcRenderer } = require('electron')
+        const { ipcRenderer } = nodeRequire('electron')
         document.addEventListener("drop", function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -25,6 +26,9 @@
         document.addEventListener('dragover', function (e) {
             e.preventDefault();
             e.stopPropagation();
+        });
+        ipcRenderer.on("message",(evt,message)=>{
+            console.log(message);
         })
     </script>
 </body>

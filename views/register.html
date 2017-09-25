@@ -65,13 +65,16 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/remove_electron_key.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery.min.js"></script>
+	<script src="js/remove_electron_key.js" type="text/javascript" charset="utf-8"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script type="text/javascript">
 		let {ipcRenderer}=nodeRequire("electron");
+		$("#top>div>img").on("click", function (evt) {
+			ipcRenderer.send("try-close-window");
+		})
 		$(".btn:first").on("click", function (evt) {
 			var ak= $("#ak").val();
 			var sk=$("#sk").val();
