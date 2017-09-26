@@ -46,7 +46,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<nav class="breadcrumb">
+					<nav class="breadcrumb" id="my-bradcrumb">
 						<a href="#" class="breadcrumb-item">Home</a>
 						<a href="#" class="breadcrumb-item">Home</a>
 						<a href="#" class="breadcrumb-item">Home</a>
@@ -93,6 +93,10 @@
 			$("#buckets a").click(function(e){
 				e.preventDefault();
 				$(this).tab('show')
+				console.log($(this).text())
+			})
+			$("#my-bradcrumb a").click(function(e){
+				e.preventDefault();
 				console.log($(this).text())
 			})
 		</script>
