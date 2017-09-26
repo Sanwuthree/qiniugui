@@ -9,7 +9,7 @@ let win = new BrowserWindow({
 })
 win.loadURL(`file://${__dirname}/register.html`);
 
-//win.webContents.openDevTools()
+win.webContents.openDevTools()
 ipcMain.on("try-regist",(evt,args)=>{
     console.log("fasd"+args)
     let mac = new qiniu.auth.digest.Mac(args[0],args[1]);

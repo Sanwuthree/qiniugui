@@ -1,36 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>QIN</title>
-</head>
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+		<style>
+			#top {
+				background-color: #000000;
+				height: 30px;
+				-webkit-app-region: drag;
+				margin-bottom: 20px;
+			}
+			
+			body,
+			html {
+				height: 100%;
+			}
+			.nav{
+				font-size: 1rem;
+			}
+			#top>div>img {
+				width: 12px;
+				-webkit-app-region: no-drag;
+			}
+			.right-bottom-area{
+				position: absolute;
+				margin-bottom: 10px;
+			}
+		</style>
+	</head>
 
-<body>
-    <div id="holder">
-        Drag your file herer
-    </div>
-	<script src="js/remove_electron_key.js" type="text/javascript" charset="utf-8"></script>    
-    <script>
-        const { ipcRenderer } = nodeRequire('electron')
-        document.addEventListener("drop", function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            //ipcRenderer.sendSync("drop-files", e.dataTransfer.files);
-            for (var f of e.dataTransfer.files) {
-                console.log(`File(s) you dragged here:`, f.path, '   ', f.type)
-            }
-        })
-        document.addEventListener('dragover', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-        });
-        ipcRenderer.on("message",(evt,message)=>{
-            console.log(message);
-        })
-    </script>
-</body>
+	<body>
+		<div class="container-fluid">
+			<div class="row justify-content-end" id="top">
+				<div class="col-auto">
+					<img src="img/glyphicons-208-remove.png" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-2" style=" padding-top: 0px;">
+					<div id="buckets" class="nav flex-column nav-pills" id="v-pills-tab" role="tablist">
+						<a v-for="bucket in buckets" href="" class="nav-link">{{bucket}}</a>
+					</div>
+				</div>
+				<div class="col">
+					<nav class="breadcrumb">
+						<a href="#" class="breadcrumb-item">Home</a>
+						<a href="#" class="breadcrumb-item">Home</a>
+						<a href="#" class="breadcrumb-item">Home</a>
+						<span  class="breadcrumb-item active">Home</span>
+					</nav>
+					<div class="" style="height: 100%; background-color: blue;">
+						
+					</div>
+					<ul class="nav nav-tabs" id="right-bottom-area">
+						<li class="nav-item">
+							<a href="#upload-sequence" class="nav-link active" data-toggle="tab" role="tab" aria-controls="upload-sequence">upload</a>
+						</li>
+						<li class="nav-item">
+							<a href="#download-sequence" class="nav-link" data-toggle="tab" role="tab" aria-controls="download-sequence">download</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane fade show active" id="upload-sequence">
+							<h1>上传列表</h1>
+						</div>
+						<div class="tab-pane fade show" id="download-sequence">
+							下载列表
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/remove_electron_key.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+		<script>
+			const {ipcRenderer} = nodeRequire("electron");
+			$("#top>div>img").on("click", function(evt) {
+				ipcRenderer.send("try-close-window");
+			})
+			var example=new Vue({
+				el:"#buckets",
+				data:{
+					buckets:ipcRenderer.sendSync("get-buckets")
+				}
+			})
+			$("#buckets a").click(function(e){
+				e.preventDefault();
+				$(this).tab('show')
+				console.log($(this).text())
+			})
+		</script>
+	</body>
 
 </html>

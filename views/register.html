@@ -17,6 +17,7 @@
 
 		#top>div>img {
 			width: 12px;
+			-webkit-app-region: no-drag;
 		}
 
 		.input-group {
@@ -38,7 +39,7 @@
 <body>
 	<div class="container-fluid">
 		<div class="row justify-content-end" id="top">
-			<div class="col-1 align-self-center">
+			<div class="col-auto">
 				<img src="img/glyphicons-208-remove.png"/>
 			</div>
 		</div>
@@ -72,8 +73,10 @@
 	<script src="js/bootstrap.js"></script>
 	<script type="text/javascript">
 		let {ipcRenderer}=nodeRequire("electron");
+		console.log("start register")
 		$("#top>div>img").on("click", function (evt) {
 			ipcRenderer.send("try-close-window");
+			console.log("send close window")
 		})
 		$(".btn:first").on("click", function (evt) {
 			var ak= $("#ak").val();
